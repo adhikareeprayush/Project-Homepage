@@ -23,14 +23,18 @@
     </div>
     <div class="weather">
         <div class="desc">
-            <p>Partly Cloudy, It is currently 27 with a high of 39 today.</p>
+            <p id="weather_desc">Partly Cloudy, It is currently 27 with a high of 39 today.</p>
         </div>
         <div class="icon">
-            <img src="images/cloudy.png" alt="cloudy">
+            <img id="weather-icon" src="images/cloudy.png" alt="cloudy">
+            <p id="temp"></p>
         </div>
     </div>
     <div class="searchbar">
-        <input type="text" placeholder="What are you looking for?">
+        <form id="google_search_form">
+            <input type="text" placeholder="Search Google" id="google_search_input">
+            <input type="submit" value="Search" id="google_search_button">
+        </form>
     </div>
     <div class="favourites">
         <a class="fav1">
@@ -55,11 +59,20 @@
         Prayush, Adhikari
     </div>
 
-
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="scripts.js"></script>
+
+    <script>
+        let google_search_form = document.getElementById('google_search_form');
+        let google_search_input = document.getElementById('google_search_input');
+        google_search_form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let search_query = google_search_input.value;
+            if (search_query === '') return;
+            window.open(`https://www.google.com/search?q=${search_query}`, '_blank');
+        });
+    </script>
 </body>
 
 </html>
