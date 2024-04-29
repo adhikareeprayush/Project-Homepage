@@ -102,12 +102,14 @@ input:focus {
   justify-content: center;
   flex-direction: column;
   margin-top: 100px;
+  gap: 10px;
 }
 
 .quote p {
   font-size: 1.5rem;
   font-weight: 500;
   text-align: center;
+  max-width: 600px;
 }
 
 .unsplash-creator-name {

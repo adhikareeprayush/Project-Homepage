@@ -7,7 +7,9 @@ function loadImg() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-
+            //get the name of the author
+            let unsplashAuthor = document.getElementById('unsplash-author');
+            unsplashAuthor.innerHTML = data.user.name;
             background.style.backgroundImage = `url(${data.urls.regular})`;
         });
 }
@@ -53,3 +55,31 @@ function greeting() {
     const timeGreeting = document.getElementById('timeGreeting');
     timeGreeting.innerHTML = greeting.innerHTML;
 }
+
+
+const category = 'happiness';
+const quoteElement = document.getElementById('quote');
+const authorElement = document.getElementById('author');
+
+$.ajax({
+    method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
+    headers: { 'X-Api-Key': 'R4mo+DRatvAxk/0Y42v3jw==GkmawomWvA4ARIKl' }, // Replace 'YOUR_API_KEY' with your actual API key
+    contentType: 'application/json',
+    success: function (result) {
+        console.log('API Response:', result);
+        if (result && result.length > 0) {
+            const quote = result[0].quote;
+            const author = result[0].author;
+            quoteElement.textContent = quote;
+            authorElement.textContent = author;
+            console.log('Quote:', quote);
+            console.log('Author:', author);
+        } else {
+            console.error('No data or empty response from the API.');
+        }
+    },
+    error: function ajaxError(jqXHR) {
+        console.error('Error fetching data:', jqXHR.status, jqXHR.statusText);
+    }
+});
