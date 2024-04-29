@@ -70,7 +70,6 @@ function getQuote() {
         headers: { 'X-Api-Key': 'R4mo+DRatvAxk/0Y42v3jw==GkmawomWvA4ARIKl' }, // Replace 'YOUR_API_KEY' with your actual API key
         contentType: 'application/json',
         success: function (result) {
-            console.log('API Response:', result);
             if (result && result.length > 0) {
                 const quote = result[0].quote;
                 const author = result[0].author;
@@ -80,8 +79,6 @@ function getQuote() {
                 else {
                     quoteElement.textContent = quote;
                     authorElement.textContent = author;
-                    console.log('Quote:', quote);
-                    console.log('Author:', author);
                 }
             } else {
                 console.error('No data or empty response from the API.');
@@ -101,7 +98,6 @@ function findWeather(laltitude, longitude, apiKey) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log('Weather data:', data);
             let weather_desc = document.getElementById('weather_desc');
             let temp = document.getElementById('temp');
             data.main.feels_like = Math.round(data.main.feels_like - 273.15);
@@ -117,7 +113,6 @@ if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-        console.log('Latitude:', latitude, 'Longitude:', longitude);
 
         findWeather(latitude, longitude);
     });
