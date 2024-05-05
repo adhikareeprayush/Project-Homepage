@@ -19,9 +19,11 @@ window.addEventListener('load', loadImg, getTime_date(), getQuote(), greeting())
 
 function getTime_date() {
     let date = new Date();
+    console.log(date); //05
     let hours = date.getHours();
     let minutes = date.getMinutes();
-    let day = date.getDay();
+    let day = date.getDate();
+    console.log(hours, minutes, day); //0
     let month = date.getMonth();
     let year = date.getFullYear();
 
